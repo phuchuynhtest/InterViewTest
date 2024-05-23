@@ -1,0 +1,70 @@
+<template>
+    <lightning-card title="Search Information" icon-name="standard:lead">
+        <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+            <lightning-layout>
+                <lightning-layout-item flexibility="auto">
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <lightning-combobox
+                            name="fieldName"
+                            label="Field Name"
+                            value={valueField}
+                            placeholder="Select Field Name"
+                            options={options}
+                            onchange={handleChange} >
+                        </lightning-combobox>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item>
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <lightning-combobox
+                            name="Operator"
+                            label="Operator"
+                            value={valueOperator}
+                            placeholder="Select Operator"
+                            options={operators}
+                            onchange={handleChangeOperator} >
+                        </lightning-combobox>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto">
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <lightning-input type="text" label="Enter Value" onchange={handleChangeSearch}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+            <lightning-layout>
+                <lightning-layout-item>
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <lightning-button label="Search" onclick={handleSearchLeads}></lightning-button>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item>
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <lightning-button label="Search and Calculate" onclick={handleGetLeads}></lightning-button>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item>
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <lightning-button label="Calculate All Leads" onclick={handleCalculateAllLeads}></lightning-button>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+    <br/>
+    <lightning-card title="Leads" icon-name="standard:lead">
+        <template if:true={leads}>
+            <lightning-datatable key-field="Id"
+                                    data={leads} 
+                                    columns={columns} 
+                                    onsave={handleSave}
+                                    hide-checkbox-column 
+                                    show-row-number-column>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+    
+    
+</template>
